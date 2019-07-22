@@ -47,7 +47,6 @@
             <div ref="box">I am a box</div>
             <button v-on:click="getInputValue">获取表单数据</button>
         </label>
-
     </div>
 </template>
 
@@ -108,21 +107,17 @@
         width: 100px;
         height: 100px;
     }
-
     .red {
         color: red;
     }
-
     .blue {
         color: blue;
     }
-
     .box {
         width: 100px;
         height: 100px;
         background: #7f7f7f;
     }
-
     body {
         background: honeydew;
     }
