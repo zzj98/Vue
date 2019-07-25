@@ -6,11 +6,11 @@
         <ul>
             <h3>正在进行的事件</h3>
             <li v-for="(item,key) in list" v-if="!item.flag">
-                <input type="checkbox" v-model="item.flag"> {{item.title}} <button @click="deleteData(key)">删除</button>
+                <input type="checkbox" v-model="item.flag" @change="saveList"> {{item.title}} <button @click="deleteData(key)">删除</button>
             </li>
             <h3>已完成的事件</h3>
             <li v-for="(item,key) in list" v-if="item.flag">
-                <input type="checkbox" v-model="item.flag"> {{item.title}} <button @click="deleteData(key)">删除</button>
+                <input type="checkbox" v-model="item.flag" @change="saveList"> {{item.title}} <button @click="deleteData(key)">删除</button>
             </li>
         </ul>
     </div>
@@ -33,6 +33,7 @@
                     });
                     this.msg = '';
                 }
+                localStorage.setItem('list',JSON.stringify(this.list));
             },
             daADD(){
                 this.list.push({
@@ -40,11 +41,22 @@
                     flag:false,
                 });
                 this.msg = '';
+                localStorage.setItem('list',JSON.stringify(this.list));
             },
             deleteData(key){
                 this.list.splice(key,1);
+                localStorage.setItem('list',JSON.stringify(this.list));
             },
-        }
+            saveList(){
+                localStorage.setItem('list',JSON.stringify(this.list));
+            },
+        },
+        mounted(){
+            var list = JSON.parse(localStorage.getItem('list'));
+            if (list){
+                this.list = list;
+            }
+        },
     }
 </script>
 
