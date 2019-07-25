@@ -17,6 +17,8 @@
 </template>
 
 <script>
+    import storage from './model/storage.js';
+    // console.log(storage);
     export default {
         data() {
             return {
@@ -33,7 +35,8 @@
                     });
                     this.msg = '';
                 }
-                localStorage.setItem('list',JSON.stringify(this.list));
+                // localStorage.setItem('list',JSON.stringify(this.list));
+                storage.set('list',this.list);
             },
             daADD(){
                 this.list.push({
@@ -41,18 +44,22 @@
                     flag:false,
                 });
                 this.msg = '';
-                localStorage.setItem('list',JSON.stringify(this.list));
+                // localStorage.setItem('list',JSON.stringify(this.list));
+                storage.set('list',this.list);
             },
             deleteData(key){
                 this.list.splice(key,1);
-                localStorage.setItem('list',JSON.stringify(this.list));
+                // localStorage.setItem('list',JSON.stringify(this.list));
+                storage.set('list',this.list);
             },
             saveList(){
-                localStorage.setItem('list',JSON.stringify(this.list));
+                // localStorage.setItem('list',JSON.stringify(this.list));
+                storage.set('list',this.list);
             },
         },
         mounted(){/*生命周期 vue刷新界面运行*/
-            var list = JSON.parse(localStorage.getItem('list'));
+            // var list = JSON.parse(localStorage.getItem('list'));
+            var list = storage.get('list');
             if (list){
                 this.list = list;
             }
