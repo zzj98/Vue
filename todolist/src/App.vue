@@ -51,7 +51,7 @@
                 localStorage.setItem('list',JSON.stringify(this.list));
             },
         },
-        mounted(){
+        mounted(){/*生命周期 vue刷新界面运行*/
             var list = JSON.parse(localStorage.getItem('list'));
             if (list){
                 this.list = list;
